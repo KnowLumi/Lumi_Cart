@@ -9,10 +9,14 @@ if (localStorage.getItem('lumi_logged_in') !== '1') {
 }
 // Get cart from localStorage
 function getCart() {
-    return JSON.parse(localStorage.getItem('lumi_cart') || '[]');
+    const lumiId = localStorage.getItem('lumi_id');
+    if (!lumiId) return [];
+    return JSON.parse(localStorage.getItem('lumi_cart_' + lumiId) || '[]');
 }
 function setCart(cart) {
-    localStorage.setItem('lumi_cart', JSON.stringify(cart));
+    const lumiId = localStorage.getItem('lumi_id');
+    if (!lumiId) return;
+    localStorage.setItem('lumi_cart_' + lumiId, JSON.stringify(cart));
 }
 function renderCart() {
     const cart = getCart();

@@ -323,9 +323,15 @@ function showToast(message) {
 // (Removed hardcoded rendering, replaced by fetchProductsAndRender above)
 
 // Cart logic
-let cart = JSON.parse(localStorage.getItem('lumi_cart') || '[]');
+let cart = (function() {
+    const lumiId = localStorage.getItem('lumi_id');
+    if (!lumiId) return [];
+    return JSON.parse(localStorage.getItem('lumi_cart_' + lumiId) || '[]');
+})();
 function saveCart() {
-    localStorage.setItem('lumi_cart', JSON.stringify(cart));
+    const lumiId = localStorage.getItem('lumi_id');
+    if (!lumiId) return;
+    localStorage.setItem('lumi_cart_' + lumiId, JSON.stringify(cart));
 }
 function updateCartCount() {
     const badge = document.getElementById('cart-count');
