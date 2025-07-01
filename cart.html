@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumi Cart - Cart</title>
+    <link href="tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow p-4 flex items-center justify-between">
+        <a href="index.html" class="text-3xl font-extrabold text-white tracking-wide flex items-center gap-2">
+            <svg class="w-8 h-8 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-8.66l-.71.71m-13.9 0l-.71-.71m16.97 4.24l-.71-.71m-13.9 0l-.71.71M21 12h-1M4 12H3" /></svg>
+            Lumi Cart
+        </a>
+        <span class="text-white font-semibold">Your Cart</span>
+        <button id="logout-btn" class="hidden bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-full shadow transition ml-2">Logout</button>
+    </header>
+    <main class="flex-1 p-6 max-w-2xl mx-auto w-full">
+        <div id="cart-list" class="bg-white rounded-2xl shadow-lg p-6"></div>
+    </main>
+    <footer class="bg-white border-t mt-8 py-4 text-center text-gray-500 text-sm shadow-inner">
+        &copy; 2025 Lumi Cart. All rights reserved.
+    </footer>
+    <script src="cart.js"></script>
+    <script>
+      if (localStorage.getItem('lumi_logged_in') === '1') {
+        document.getElementById('logout-btn').classList.remove('hidden');
+      }
+      document.getElementById('logout-btn').onclick = function() {
+        localStorage.removeItem('lumi_logged_in');
+        window.location.href = 'login.html';
+      };
+    </script>
+</body>
+</html>
